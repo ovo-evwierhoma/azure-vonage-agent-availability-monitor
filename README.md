@@ -1,71 +1,62 @@
-Azure Vonage Agent Availability Monitoring & Alerting
-Project Overview
+<h1 align="center">Azure Vonage Agent Availability Monitoring</h1>
 
-This project is a Proof of Concept (PoC) demonstrating how Microsoft Azure Logic Apps can automate agent availability monitoring and email alerting within a Vonage contact-centre environment.
+<p align="center">
+<img src="https://img.shields.io/badge/Microsoft-Azure-0078D4?logo=microsoftazure&logoColor=white" />
+<img src="https://img.shields.io/badge/Azure-Logic%20Apps-0078D4" />
+<img src="https://img.shields.io/badge/Status-Proof%20of%20Concept-green" />
+</p>
 
-The solution uses Excel Online as a simulated data source representing Vonage agent availability information.
+<h2>Project Overview</h2>
 
-Direct access to the organisation's Vonage agent-status API was not available during development. Excel Online was therefore used to simulate the agent data and demonstrate the intended automation workflow.
+<p>A proof of concept demonstrating automated monitoring of Vonage contact-centre agent availability using Microsoft Azure Logic Apps.</p>
 
-Business Problem
+<h2>Business Problem</h2>
 
-Contact-centre operations depend on having sufficient agents available to manage incoming customer interactions.
+<p>Leadership needs visibility when agent availability reaches a critical level to support timely operational decisions.</p>
 
-When agent availability reaches a critical level, operational leadership needs timely notification to support decision-making and operational response.
+<h2>Solution</h2>
 
-Manually monitoring agent availability can introduce delays and requires ongoing human attention.
+<p>The Azure Logic App automates the following process:</p>
 
-This project explores how cloud automation can improve operational visibility through scheduled monitoring and automated email notifications.
+<ol>
+<li>Runs automatically every minute.</li>
+<li>Retrieves simulated agent availability data from Excel Online.</li>
+<li>Evaluates the available agent count.</li>
+<li>Sends an automated email alert through Microsoft Outlook when the count reaches zero.</li>
+</ol>
 
-Solution Architecture
+<h2>Technology Used</h2>
 
-The proof of concept uses three main components:
+<ul>
+<li>Microsoft Azure Logic Apps</li>
+<li>Microsoft Excel Online</li>
+<li>Microsoft 365 Outlook</li>
+<li>JSON Workflow Definition</li>
+</ul>
 
-Azure Logic Apps: Orchestrates the monitoring workflow and executes scheduled checks.
-Excel Online: Simulates the Vonage agent availability data source.
-Microsoft 365 Outlook: Sends automated email notifications when the configured condition is met.
-How It Works
-Azure Logic Apps runs on a scheduled recurrence every minute.
-The workflow retrieves agent availability information from Excel Online.
-A conditional action evaluates the agent count.
-If the configured condition is met, an automated email notification is sent through Outlook.
+<h2>Data Source</h2>
 
-Current implementation: The exported workflow checks whether the agent count equals zero.
+<p>Direct access to the organisation's Vonage agent-status API was unavailable during development. Excel Online was therefore used to simulate agent availability data and demonstrate the intended automation.</p>
 
-The intended business requirement of detecting one or fewer available agents for more than one minute remains subject to implementation and validation.
+<h2>Project Screenshots</h2>
 
-Technology Stack
-Microsoft Azure
-Azure Logic Apps
-Microsoft Excel Online
-Microsoft 365 Outlook
-JSON
-Workflow automation
-Project Status
+<p><i>Screenshots of the Azure workflow, configuration and email notifications will be added here.</i></p>
 
-Proof of Concept – simulated agent data source.
+<h2>Future Improvements</h2>
 
-Future enhancement: Integrate directly with the Vonage agent-status API when the required API access becomes available.
+<ul>
+<li>Direct integration with the Vonage API.</li>
+<li>Configurable agent availability thresholds.</li>
+<li>Monitoring conditions sustained for more than one minute.</li>
+<li>Alert deduplication to prevent repeated notifications.</li>
+</ul>
 
-Security
+<h2>Security</h2>
 
-Sensitive information has been removed or replaced with placeholders before publication.
+<p>All sensitive information, including subscription IDs, connection details, email addresses and credentials, must be removed or replaced with placeholders before publication.</p>
 
-No passwords, access tokens, API keys, personal email addresses, subscription identifiers or internal connection details should be included in this repository.
+<hr />
 
-Learning Outcomes
-Azure Logic Apps workflow orchestration.
-Scheduled cloud automation.
-Excel Online integration.
-Conditional workflow execution.
-Microsoft 365 email integration.
-Operational monitoring and alerting.
-Cloud project documentation and security awareness.
-Future Improvements
-Direct Vonage API integration.
-Configurable agent availability thresholds.
-Sustained-condition monitoring.
-Alert deduplication.
-Improved error handling and monitoring.
+<p align="center"><strong>Project Category:</strong> Cloud Engineering | Azure Automation | Operational Monitoring</p>
 
-Project Category: Cloud Engineering | Azure Automation | Operational Monitoring
+<p align="center">Built with Microsoft Azure</p>

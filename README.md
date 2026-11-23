@@ -38,10 +38,6 @@
 
 <p>Direct access to the organisation's Vonage agent-status API was unavailable during development. Excel Online was therefore used to simulate agent availability data and demonstrate the intended automation.</p>
 
-<h2>Project Screenshots</h2>
-
-<p><i>Screenshots of the Azure workflow, configuration and email notifications will be added here.</i></p>
-
 <h2>Future Improvements</h2>
 
 <ul>

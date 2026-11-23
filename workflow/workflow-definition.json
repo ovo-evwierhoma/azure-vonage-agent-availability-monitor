@@ -1,0 +1,115 @@
+
+{
+  "definition": {
+    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+    "contentVersion": "1.0.0.0",
+    "triggers": {
+      "Recurrence": {
+        "recurrence": {
+          "interval": 1,
+          "frequency": "Minute"
+        },
+        "evaluatedRecurrence": {
+          "interval": 1,
+          "frequency": "Minute"
+        },
+        "type": "Recurrence"
+      }
+    },
+    "actions": {
+      "Get_a_row": {
+        "runAfter": {},
+        "metadata": {
+          "XXX": "/XXX.xlsx"
+        },
+        "type": "ApiConnection",
+        "inputs": {
+          "host": {
+            "connection": {
+              "name": "@parameters('$connections')['excelonline']['connectionId']"
+            }
+          },
+          "method": "get",
+          "path": "/drives/me/files/@{encodeURIComponent('XXX')}/tables/@{encodeURIComponent('XXX')}/items/@{encodeURIComponent(encodeURIComponent('Available'))}",
+          "queries": {
+            "source": "me",
+            "idColumn": "Status State"
+          }
+        }
+      },
+      "Condition": {
+        "actions": {
+          "Send_an_email_(V2)": {
+            "type": "ApiConnection",
+            "inputs": {
+              "host": {
+                "connection": {
+                  "name": "@parameters('$connections')['office365-1']['connectionId']"
+                }
+              },
+              "method": "post",
+              "body": {
+                "To": "XXX",
+                "Subject": "CRITICAL ALERT: 0 Agents Available",
+                "Body": "<p> The dashboard is reporting 0 available agents. Operational review required.</p>",
+                "Importance": "Normal"
+              },
+              "path": "/v2/Mail"
+            }
+          }
+        },
+        "runAfter": {
+          "Get_a_row": [
+            "Succeeded"
+          ]
+        },
+        "else": {
+          "actions": {}
+        },
+        "expression": {
+          "and": [
+            {
+              "equals": [
+                "@outputs('Get_a_row')?['body']?['Agent Count']",
+                "0"
+              ]
+            },
+            {
+              "equals": [
+                1,
+                1
+              ]
+            }
+          ]
+        },
+        "type": "If"
+      }
+    },
+    "outputs": {},
+    "parameters": {
+      "$connections": {
+        "type": "Object",
+        "defaultValue": {}
+      }
+    }
+  },
+  "parameters": {
+    "$connections": {
+      "type": "Object",
+      "value": {
+        "excelonline": {
+          "id": "XXX",
+          "connectionId": "XXX",
+          "connectionName": "XXX",
+          "connectionProperties": {}
+        },
+        "office365-1": {
+          "id": "XXX",
+          "connectionId": "XXX",
+          "connectionName": "XXX",
+          "connectionProperties": {}
+        }
+      }
+    }
+  }
+}
